@@ -18,15 +18,39 @@ public class Restaurant {
     }
 
     public boolean isRestaurantOpen() {
-        return true;
-        //DELETE ABOVE STATEMENT AND WRITE CODE HERE
+        int compareRes = this.closingTime.compareTo(LocalTime.now());
+        if (compareRes > 0) {
+            return true;
+        }
+        return false;
+        // //DELETE ABOVE STATEMENT AND WRITE CODE HERE
     }
+
+//    private int getItemValue(String item) {
+//        for (int i=0; i<menu.size(); i++) {
+//            if (menu.get(i).getName() == item) {
+//                return menu.get(i).getPrice();
+//            }
+//        }
+//        // Assuming all items added in cart will definitely be present and in stock with the restaurant
+//        // as stated in the requirements of the question.
+//        // Otherwise, need to implement another Exception and raise it in case item not found in list
+//        return 0;
+//    }
+//
+//    public int calculateTotalOrderValue(List<String> items) {
+//        int orderValue = 0;
+//        for (int i=0; i<items.size(); i++) {
+//            orderValue += getItemValue(items.get(i));
+//        }
+//        return orderValue;
+//    }
 
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
     public List<Item> getMenu() {
-        return null;
-        //DELETE ABOVE RETURN STATEMENT AND WRITE CODE HERE
+        return this.menu;
+        // //DELETE ABOVE RETURN STATEMENT AND WRITE CODE HERE
     }
 
     private Item findItemByName(String itemName){
@@ -41,7 +65,7 @@ public class Restaurant {
         Item newItem = new Item(name,price);
         menu.add(newItem);
     }
-    
+
     public void removeFromMenu(String itemName) throws itemNotFoundException {
 
         Item itemToBeRemoved = findItemByName(itemName);
