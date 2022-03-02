@@ -2,6 +2,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,6 +35,20 @@ class RestaurantTest {
     }
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //<<<<<<<<<<<<<<<<<<<<<<<<<TOTAL_ORDER_VALUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    @Test
+    public void adding_items_to_cart_should_return_total_value(){
+        restaurant.addToMenu("Sweet corn soup",119);
+        restaurant.addToMenu("Vegetable lasagne", 269);
+        restaurant.addToMenu("Cheese Cake", 199);
+        List<String> cart = new ArrayList<>();
+        cart.add("Sweet corn soup");
+        cart.add("Cheese Cake");
+        orderValue = restaurant.calculateTotalOrderValue(cart);
+        assertEquals(orderValue, 318);
+    }
+    //<<<<<<<<<<<<<<<<<<<<<<<<<TOTAL_ORDER_VALUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
