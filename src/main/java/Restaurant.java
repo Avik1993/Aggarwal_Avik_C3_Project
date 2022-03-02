@@ -26,11 +26,24 @@ public class Restaurant {
         // //DELETE ABOVE STATEMENT AND WRITE CODE HERE
     }
 
-
+    private int getItemValue(String item) {
+        for (int i=0; i<menu.size(); i++) {
+            if (menu.get(i).getName() == item) {
+                return menu.get(i).getPrice();
+            }
+        }
+        // Assuming all items added in cart will definitely be present and in stock with the restaurant
+        // as stated in the requirements of the question.
+        // Otherwise, need to implement another Exception and raise it in case item not found in list
+        return 0;
+    }
 
     public int calculateTotalOrderValue(List<String> items) {
-        // Return total order value using list of items provided
-        return 0;
+        int orderValue = 0;
+        for (int i=0; i<items.size(); i++) {
+            orderValue += getItemValue(items.get(i));
+        }
+        return orderValue;
     }
 
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
